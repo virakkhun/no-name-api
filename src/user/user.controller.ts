@@ -29,7 +29,6 @@ export class UserController {
   @UseGuards(JwtAuthGuard)
   @Post('delete')
   async deleteUser(@Req() req: Request, @Body() { email }: { email: string }) {
-    console.log(req);
     const deletedUser = await this.userService.deleteOne(email);
     if (deletedUser) {
       return {
