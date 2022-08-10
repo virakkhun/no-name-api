@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { jwtSecret } from '../config.global';
 import { UserService } from '../user/user.service';
+import configuration from '../config/configuration';
 
 @Injectable()
 export class AuthService {
@@ -32,7 +32,7 @@ export class AuthService {
             data: user._doc,
           },
           {
-            secret: jwtSecret,
+            secret: configuration().JWT_SECRET_KEY,
             expiresIn: 60 * 60 * 24 * 7,
           },
         ),
